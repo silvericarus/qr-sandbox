@@ -7,4 +7,5 @@
     <string name="dummy_button" translatable="false">Dummy Button</string>
     <string name="dummy_content" translatable="false">DUMMY\nCONTENT</string>
     <string name="main_menu_logo_description">Main page logo</string>
+    <string name="scan_feedback_dialog_message">The URL that QR redirects to is</string>
 </resources>
