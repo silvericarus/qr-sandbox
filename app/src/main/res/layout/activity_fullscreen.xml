@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/squaredYellow"
+    android:theme="@style/ThemeOverlay.QRSandbox.FullscreenContainer"
+    tools:context=".FullscreenActivity">
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc. -->
+    <TextView
+        android:id="@+id/fullscreen_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:keepScreenOn="true"
+        android:text="@string/dummy_content"
+        android:textColor="?attr/fullscreenTextColor"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <!-- The primary full-screen view. This can be replaced with whatever view
+             is needed to present your content, e.g. VideoView, SurfaceView,
+             TextureView, etc. -->
+
+    <!-- This FrameLayout insets its children based on system windows using
+             android:fitsSystemWindows. -->
+    <LinearLayout
+        android:id="@+id/fullscreen_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:background="@color/skyBlue"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <Button
+            android:id="@+id/btn_scan"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="133sp"
+            android:layout_height="140dp"
+            android:layout_gravity="center|center_horizontal|center_vertical"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:backgroundTint="@color/skyBlue"
+            android:text="@string/main_menu_btn_scan_txt"
+            android:textColor="@color/lotsOfWater"
+            android:textIsSelectable="false"
+            android:textSize="14sp"
+            android:visibility="visible"
+            app:icon="@drawable/ic_qr_code_scanner"
+            app:iconTint="@color/lotsOfWater"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_record"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/btn_record"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="133sp"
+            android:layout_height="140dp"
+            android:layout_gravity="center|center_horizontal|center_vertical"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:backgroundTint="@color/skyBlue"
+            android:text="@string/main_menu_btn_record_txt"
+            android:textColor="@color/lotsOfWater"
+            android:textIsSelectable="false"
+            android:textSize="14sp"
+            android:visibility="visible"
+            app:icon="@drawable/ic_baseline_history_24"
+            app:iconTint="@color/lotsOfWater" />
+
+        <Button
+            android:id="@+id/btn_settings"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="133sp"
+            android:layout_height="140dp"
+            android:layout_gravity="center|center_horizontal|center_vertical"
+            android:layout_weight="1"
+            android:background="@color/transparent"
+            android:backgroundTint="@color/skyBlue"
+            android:text="@string/main_menu_btn_settings_txt"
+            android:textColor="@color/lotsOfWater"
+            android:textIsSelectable="false"
+            android:textSize="14sp"
+            android:visibility="visible"
+            app:icon="@drawable/ic_settings"
+            app:iconTint="@color/lotsOfWater"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_record"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </LinearLayout>
+</FrameLayout>

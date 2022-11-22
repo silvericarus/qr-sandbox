@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">QR Sandbox</string>
+    <string name="main_menu_btn_scan_txt">Escanear</string>
+    <string name="main_menu_btn_record_txt">Historial</string>
+    <string name="main_menu_btn_settings_txt">Configuración</string>
+    <string name="title_activity_fullscreen2">FullscreenActivity2</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+</resources>
