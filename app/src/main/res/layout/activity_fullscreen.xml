@@ -5,22 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/squaredYellow"
+    android:backgroundTintMode="multiply"
     android:theme="@style/ThemeOverlay.QRSandbox.FullscreenContainer"
     tools:context=".FullscreenActivity">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
          TextureView, etc. -->
-    <TextView
-        android:id="@+id/fullscreen_text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:keepScreenOn="true"
-        android:text="@string/dummy_content"
-        android:textColor="?attr/fullscreenTextColor"
-        android:textSize="50sp"
-        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|center_horizontal"
+        android:layout_marginBottom="55sp"
+        android:background="@color/lotsOfWater"
+        android:backgroundTint="@color/lotsOfWater"
+        android:backgroundTintMode="multiply"
+        android:contentDescription="@string/main_menu_logo_description"
+        android:contextClickable="false"
+        android:isScrollContainer="false"
+        app:srcCompat="@drawable/ic_qr" />
 
     <!-- The primary full-screen view. This can be replaced with whatever view
              is needed to present your content, e.g. VideoView, SurfaceView,
@@ -28,6 +33,19 @@
 
     <!-- This FrameLayout insets its children based on system windows using
              android:fitsSystemWindows. -->
+    <TextView
+        android:id="@+id/fullscreen_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="55sp"
+        android:gravity="center|center_horizontal"
+        android:keepScreenOn="false"
+        android:text="@string/dummy_content"
+        android:textColor="?attr/fullscreenTextColor"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:id="@+id/fullscreen_content"
         android:layout_width="match_parent"
