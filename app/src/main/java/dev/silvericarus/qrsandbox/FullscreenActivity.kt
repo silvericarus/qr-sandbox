@@ -28,28 +28,26 @@ class FullscreenActivity : AppCompatActivity() {
     private lateinit var fullscreenContent: TextView
     private lateinit var fullscreenContentControls: LinearLayout
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == 0)
+        if (resultCode == RESULT_OK)
         {
-            if (resultCode == RESULT_OK)
-            {
-                val result = IntentIntegrator.parseActivityResult(resultCode, data)
-                AlertDialog.Builder(this)
-                    .setMessage(getString(R.string.scan_feedback_dialog_message) + "${result.contents}?")
-                    .setPositiveButton("Yes")
-                    { dialogInterface, i ->
-                        val intent = Intent(Intent.ACTION_WEB_SEARCH)
-                        intent.putExtra(SearchManager.QUERY, result.contents)
-                        startActivity(intent)
-                    }
-                    .setNegativeButton("No")
-                    { dialogInterface, i ->
-
-                    }
-                    .create()
-                    .show()
-            }
+            val result = IntentIntegrator.parseActivityResult(resultCode, data)
+            AlertDialog.Builder(this)
+                .setMessage(getString(R.string.scan_feedback_dialog_message) + "${result.contents}?")
+                .setPositiveButton(R.string.qr_scan_notification_ok)
+                { dialogInterface, i ->
+                    val intent = Intent(this, SandboxActivity::class.java)
+                    intent.putExtra("desiredURL", result.contents)
+                    startActivity(intent)
+                }
+                .setNegativeButton(R.string.qr_scan_notification_ko)
+                { dialogInterface, i ->
+                    dialogInterface.cancel()
+                }
+                .create()
+                .show()
         }
     }
 
@@ -61,22 +59,22 @@ class FullscreenActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(false)
+        supportActionBar?.setBackgroundDrawable(getDrawable(R.color.everSinceTheDay))
 
 
         fullscreenContentControls = binding.fullscreenContent
 
         //Do the scan of the QR Code
-        binding.btnScan.setOnTouchListener { view, motionEvent ->
+        binding.btnScan.setOnClickListener { view ->
             val intentIntegrator = IntentIntegrator(this)
-            intentIntegrator.setDesiredBarcodeFormats(IntentIntegrator.QR_CODE)
+            intentIntegrator
+                .setDesiredBarcodeFormats(listOf(IntentIntegrator.QR_CODE))
+                //.setTimeout(5000)
+                .setTorchEnabled(false)
+                //.setBarcodeImageEnabled(true)
+                .setBeepEnabled(false)
+
             intentIntegrator.initiateScan()
-
-            val intent = Intent("com.google.zxing.client.android.SCAN")
-            intent.putExtra("SCAN_MODE", "QR_CODE_MODE")
-            intent.putExtra("SAVE_HISTORY", true)
-            startActivityForResult(intent, 0)
-
-            return@setOnTouchListener (true)
         }
 
         //Redirect to the history/record activity
