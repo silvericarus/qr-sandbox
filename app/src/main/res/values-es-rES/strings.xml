@@ -9,4 +9,5 @@
     <string name="no">No</string>
     <string name="qr_scan_notification_ok">Abrir Sandbox</string>
     <string name="qr_scan_notification_ko">Cerrar Notificación</string>
+    <string name="no_url_qr_toast">No hay una URL válida en ese código QR</string>
 </resources>

@@ -27,6 +27,6 @@
     <string name="menu_slideshow">Slideshow</string>
     <string name="qr_scan_notification_ok">Open Sandbox</string>
     <string name="qr_scan_notification_ko">Close Notification</string>
+    <string name="no_url_qr_toast">There\'s no valid URL in that QR code</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

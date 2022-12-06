@@ -15,8 +15,10 @@ import android.view.View
 import android.view.WindowInsets
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import com.google.zxing.integration.android.IntentIntegrator
 import dev.silvericarus.qrsandbox.databinding.ActivityFullscreenBinding
+import java.util.regex.Pattern
 
 /**
  * The starter activity, that explains how the app works and shows
@@ -28,12 +30,14 @@ class FullscreenActivity : AppCompatActivity() {
     private lateinit var fullscreenContent: TextView
     private lateinit var fullscreenContentControls: LinearLayout
 
+
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (resultCode == RESULT_OK)
+        val regexUrl: Pattern = Pattern.compile("/^(https?:\\/\\/)?([\\da-z\\.-]+)\\.([a-z\\.]{2,6})([\\/\\w \\.-]*)*\\/?\$/gm")
+        val result = IntentIntegrator.parseActivityResult(resultCode, data)
+        if (resultCode == RESULT_OK && regexUrl.matcher(result.contents).matches())
         {
-            val result = IntentIntegrator.parseActivityResult(resultCode, data)
             AlertDialog.Builder(this)
                 .setMessage(getString(R.string.scan_feedback_dialog_message) + "${result.contents}?")
                 .setPositiveButton(R.string.qr_scan_notification_ok)
@@ -49,6 +53,15 @@ class FullscreenActivity : AppCompatActivity() {
                 .create()
                 .show()
         }
+        else if (!regexUrl.matcher(result.contents).matches())
+            run {
+                val toast: Toast = Toast.makeText(
+                    applicationContext,
+                    R.string.no_url_qr_toast,
+                    Toast.LENGTH_LONG
+                )
+                toast.show()
+            }
     }
 
     @SuppressLint("ClickableViewAccessibility")
